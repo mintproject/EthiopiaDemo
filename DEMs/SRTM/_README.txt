@@ -1,0 +1,1 @@
+This file contains a DEM for Ethiopia created as a mosaic of 1-degee x 1-degee SRTM V3 tiles.  The DEM is provided in 3 formats: GeoTIFF, Arc FLT and RiverTools Grid.  The grid cell size is 3 arcseconds x 3 arcseconds, which corresponds to 92.6 meters at the equator.
