@@ -1,0 +1,57 @@
+S.D. Peckham
+July 2019
+
+=======================================
+Ethiopia MERIT DEM Mosaic - Provenance
+=======================================
+1. Downloaded 5 degree x 5 degree MERIT DEM tiles spanning Ethiopia from:
+   http://hydro.iis.u-tokyo.ac.jp/~yamadai/MERIT_DEM/
+   Overall bounding box:
+      South edge latitude:   0 degrees North
+      North edge latitude:  20 degrees North
+      West edge longitude:  30 degrees East
+      East edge longitude:  50 degrees East
+      Grid cell size:       3 arcsecs x 3 arcsecs  
+      Each tile ncols:      6000
+      Each tile nrows:      6000
+
+2. Fixed problem with georeferencing in HDR files (after import into RT4).
+   Mosaic showed that the 4 tiles bordering the equator had incorrect bounding
+       box info.  Source HDR files seem okay, so RT4 import error ?
+       MERIT DEM Tile HDR files use XLLCENTER and YLLCENTER, with NCOLS=NROWS=6000.
+       SRTM DEM Tiles have NCOLS=NROWS=1201, so they use XLLCORNER, YLLCORNER.
+       So the mosaic DEMs are not directly comparable.
+       Edited erroneous bounding box info in RiverTools RTI file.
+       South edge latitudes:   -0.000416666667
+       North edge latitudes:    4.999583333333
+   Used View DEM Info > Check Info button to check consistency.
+ 
+3. Clipped to same bounding box as the SRTM DEM mosaic.
+   (Used Python/Numpy:  dem[4799:21600, 2401:22802], dem.tofile, etc.)
+    Clipped so that max DEM value occurs in same (col, row)=(7646, 3316)
+   Bounding box:
+      South edge latitude:   2 degrees North
+      North edge latitude:  16 degrees North
+      West edge longitude:  32 degrees East
+      East edge longitude:  49 degrees East
+      Grid cell size:       3 arcsecs x 3 arcsecs
+      Number of columns:    20401
+      Number of rows:       16801
+
+4. Repaced nodata values of -9999 in ocean with 0 using:
+   Prepare > Replace Values
+   to create Ethiopia_MERIT_DEM.rtg (and .rti file).
+
+==================================
+Marker Grid Cells for Comparison
+==================================
+
+Feature       SRTM:(col, row, elev)  MERIT:(col, row, elev)   ACTUAL:(elev)
+----------------------------------------------------------------------------
+highest peak  (7646, 3316, 4517)     (7646, 3316, 4514.62)    4550 
+local peak    (12480, 4246, 1847)    (12479, 4247, 1847.18)    ?
+peninsula     (13574, 5443, 5)       (13573, 5443, 5.199)      ?
+
+
+
+

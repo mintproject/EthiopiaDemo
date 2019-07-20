@@ -1,0 +1,43 @@
+S.D. Peckham
+July 2019
+
+=======================================
+Ethiopia SRTM DEM Mosaic - Provenance
+=======================================
+0. Information:  https://www2.jpl.nasa.gov/srtm/
+   SRTM NASA V3 (Void-Filled "SRTM Plus")
+
+1. Downloaded 1 degree x 1 degree SRTM DEM tiles spanning Ethiopia from:
+   https://e4ftl01.cr.usgs.gov//MODV6_Dal_D/SRTM/SRTMGL3.003/2000.02.11/
+   Overall bounding box:
+      South edge latitude:   2 degrees North
+      North edge latitude:  16 degrees North
+      West edge longitude:  32 degrees East
+      East edge longitude:  49 degrees East
+      Grid cell size:       3 arcsecs x 3 arcsecs
+      Number of columns:    20402
+      Number of rows:       16802
+  
+   Created:  Ethiopia_SRTM-0_DEM.rtg  (and .rti file)
+2. Mosaicked the tiles with RiverTools 4.0 using:
+   Prepare > Mosaic or Clip DEMs
+   Options > Add All Similar in WD (working directory)
+     (choose any HGT file)
+
+3. Repaced nodata values of -10000 in ocean with 0 using:
+   Prepare > Replace Values
+   to create Ethiopia_SRTM_DEM.rtg (and .rti file).
+
+==================================
+Marker Grid Cells for Comparison
+==================================
+
+Feature       SRTM:(col, row, elev)  MERIT:(col, row, elev)   ACTUAL:(elev)
+----------------------------------------------------------------------------
+highest peak  (7646, 3316, 4517)     (7646, 3316, 4514.62)    4550 
+local peak    (12480, 4246, 1847)    (12479, 4247, 1847.18)    ?
+peninsula     (13574, 5443, 5)       (13573, 5443, 5.199)      ?
+
+
+
+
